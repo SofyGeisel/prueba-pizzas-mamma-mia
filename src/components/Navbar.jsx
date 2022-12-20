@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import CartWidget from "./CartWidget";
 
 
 function Navbar() {
@@ -9,7 +10,7 @@ function Navbar() {
       <div className="pizzaheader">
         <div className="nav-container">
           <NavLink className="nav_link" to='/home'>🍕Pizzeria Mamma Mia</NavLink>
-          <NavLink className="nav_link" to='/carrito'> 🛒  </NavLink>
+          <NavLink className="nav_link" to='/carrito'> <CartWidget />  </NavLink>
         </div>
         <div className="subnav-container">
           <h1>¡Pizzería Mamma Mia!</h1>

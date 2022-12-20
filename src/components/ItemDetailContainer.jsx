@@ -67,7 +67,7 @@ useEffect(() => {
 
 
 getData.then(res => setPizzas(res.find(pizza => pizza.id === detalleId)));
-}, [])
+}, [detalleId])
 
 
   return (
