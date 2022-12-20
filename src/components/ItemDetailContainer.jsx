@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import Title from "./Title";
-import ItemList from "./ItemList";
+import ItemDetail from "./ItemDetail";
+import React, { useState, useEffect } from 'react';
+import { useParams } from "react-router-dom";
 
 const listaPizzas = [
   {
@@ -53,28 +53,26 @@ const listaPizzas = [
   },
 ];
 
-export const ItemListContainer = ({ texto }) => {
-  const [pizzas, setPizzas] = useState([]);
 
-  useEffect(() => {
-    const getData = new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(listaPizzas);
-      }, 1000);
-    });
+export const ItemDetailContainer = () => {
+  const [pizzas, setPizzas] = useState({});
+  const {detalleId} = useParams();
 
-    getData.then((res) => setPizzas(res));
-  }, []);
+useEffect(() => {
+  const getData = new Promise(resolve => {
+    setTimeout(() => {
+      resolve(listaPizzas);
+    }, 1000);
+  });
 
-  
+
+getData.then(res => setPizzas(res.find(pizza => pizza.id === detalleId)));
+}, [])
+
 
   return (
-    <>
-      <Title greeting={texto} />
-      
-      <ItemList pizzas={pizzas} />
-    </>
-  );
-};
+    <ItemDetail pizzas={pizzas} />
+  )
+}
 
-export default ItemListContainer;
+export default ItemDetailContainer
