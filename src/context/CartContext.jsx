@@ -8,30 +8,7 @@ export const useCartContext = () => useContext(CartContext);
 const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([])
 
-  /*const addProduct = (pizzas, newQuantity) => {
-    const newCart = cart.filter(prod => prod.id !== pizzas.id);
-    newCart.push({ ...pizzas, quantity: newQuantity});
-    setCart(newCart)
-  }*/
-
-  /*const addProduct = (pizzas, newQuantity) => {
-    const { quantity = 0 } = cart.find(prod => prod.id === pizzas.id) || {};
-    const newCart = cart.filter(prod => prod.id !== pizzas.id);
-    setCart([...newCart, { ...pizzas, quantity: quantity + newQuantity }])
-  }*/
-
-  /*const addProduct = (pizzas, quantity) => {
-    let newCart;
-    let product = cart.find(product => product.id === pizzas.id);
-    if (product) {
-      product.quantity += quantity;
-      newCart = [...cart];
-    } else {
-      product = { ...pizzas, quantity: quantity };
-      newCart = [ ...cart, product];
-    }
-    setCart(newCart)
-  }*/
+  console.log('carrito: ', cart)
 
   const addProduct = (pizzas, quantity) => {
     if (isInCart(pizzas.id)) {
@@ -42,6 +19,12 @@ const CartProvider = ({ children }) => {
       setCart([...cart, {...pizzas, quantity}]);
     }
   }
+
+  const totalPrice = () => {
+    return cart.reduce((prev, act) => prev + act.quantity * act.price, 0)
+  }
+
+  const totalProducts = () => cart.reduce((acumulador, productoActual) => acumulador + productoActual.quantity, 0);
 
   const clearCart = () => setCart([]);
 
@@ -54,7 +37,10 @@ const CartProvider = ({ children }) => {
       clearCart,
       isInCart,
       removeProduct,
-      addProduct
+      addProduct,
+      totalPrice,
+      totalProducts,
+      cart
     }}>
         {children}
     </CartContext.Provider>

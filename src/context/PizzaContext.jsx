@@ -4,7 +4,6 @@ export const PizzaContext = createContext();
 
 const PizzaProvider = ({ children }) => {
   const [pizzas, setPizzas] = useState([]);
-  
 
   useEffect(() => {
     const fetchData = async () => {
@@ -18,6 +17,9 @@ const PizzaProvider = ({ children }) => {
     };
     fetchData();
   }, []);
+  
+
+
 
   return (
     <PizzaContext.Provider value={{ pizzas, setPizzas }}>

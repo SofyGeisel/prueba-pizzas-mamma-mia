@@ -62,7 +62,7 @@ useEffect(() => {
   const getData = new Promise(resolve => {
     setTimeout(() => {
       resolve(listaPizzas);
-    }, 1000);
+    }, );
   });
 
 
